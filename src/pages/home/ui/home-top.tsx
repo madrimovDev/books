@@ -24,7 +24,7 @@ export default function HomeTop() {
 						ml={2}
 						fontSize='inherit'
 						color='primary'>
-						{books.data?.length} books
+						{books.data?.length || 0} books
 					</Typography>
 				</Typography>
 				<Typography

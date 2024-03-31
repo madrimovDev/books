@@ -25,7 +25,7 @@ const createBookScheme = Joi.object<FormData>({
 
 export default function CreateBook() {
 	const { open, onClose } = useBookModal()
-	const { register, handleSubmit } = useForm<FormData>({
+	const { register, handleSubmit, reset } = useForm<FormData>({
 		resolver: joiResolver(createBookScheme)
 	})
 	const create = useCreateBook()
@@ -33,10 +33,15 @@ export default function CreateBook() {
 		create.mutateAsync(data.isbn).then(onClose)
 	}
 
+	const close = () => {
+		onClose()
+		reset()
+	}
+
 	return (
 		<Dialog
 			open={open}
-			onClose={onClose}>
+			onClose={close}>
 			<DialogTitle>Create Book</DialogTitle>
 			<DialogContent sx={{ minWidth: 400, pt: 10 }}>
 				<form
@@ -62,7 +67,7 @@ export default function CreateBook() {
 				</Button>
 				<Button
 					color='error'
-					onClick={onClose}>
+					onClick={close}>
 					Close
 				</Button>
 			</DialogActions>
