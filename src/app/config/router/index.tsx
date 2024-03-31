@@ -3,6 +3,7 @@ import { Home, SignUp } from './lazy-pages'
 import { Suspense } from 'react'
 import RequireAuth from '@/pages/auth/require-auth'
 import RootLayout from '@/app/layout/root-layout/root-layout'
+import { Loading } from '@/shared/components'
 
 export const router = createBrowserRouter([
 	{
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
 					{
 						index: true,
 						element: (
-							<Suspense fallback='Loading...'>
+							<Suspense fallback={<Loading />}>
 								<Home />
 							</Suspense>
 						)
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'signup',
 				element: (
-					<Suspense fallback='Loading...'>
+					<Suspense fallback={<Loading />}>
 						<SignUp />
 					</Suspense>
 				)
